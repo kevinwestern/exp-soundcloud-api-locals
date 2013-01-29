@@ -1,0 +1,36 @@
+
+<div class="row-fluid">
+	<div class="span3">
+		<div embed-player="embedded"></div>
+	</div>
+	<div class="span6">
+		<div ng-repeat="user in users" style="overflow: auto; margin-bottom: 35px;">
+			<div class="media" style="overflow: auto">
+				<a ng-href="{{user.permalink_url}}" class="pull-left">
+					<img ng-src="{{user.avatar_url}}" alt="user-image" style="float: left"/>
+				</a>
+				<div class="media-body">
+					<h4 class="media-body"><a ng-href="{{user.permalink_url}}">{{user.username}}</a></h4>
+				</div>
+				<ul style="float: left; list-style-type: none" class="span7">
+					<li ng-repeat="track in user.tracks">
+						<a ng-click="playTrack(track)">{{track.title | shorten}}</a>
+					</li>
+				</ul>
+				<span class="span1"><button class="btn btn-primary" ng-click="favoriteUser(user)">Add</button></span>
+			</div>
+			<p>{{user.description}}</p>
+			<div>
+				<strong>tracks</strong>: {{user.track_count}}
+			</div>
+			<div>
+				<strong>followers</strong>: {{user.followers_count}}
+			</div>
+		</div>
+	</div>
+	<div class="span3">	
+		<div ng-repeat="user in favorites">
+			<a ng-href="{{user.permalink_url}}"><img ng-src="{{user.avatar_url}}" alt="user-image"/></a>
+		</div>
+	</div>
+</div>
